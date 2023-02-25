@@ -1,0 +1,19 @@
+name: Slack Notifications
+
+on:
+  deployment_status:
+    types: [success, failure]
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: <aiops-kubernetes>
+          message: 'Deployment status: ${{ github.event.deployment_status.state }}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.xoxb-4264318617222-4483090506231-edxdkdjPy9fLKbhH1UAzQxNd
+ }}
