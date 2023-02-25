@@ -1,0 +1,22 @@
+name: Slack notifications
+
+on:
+  deployment_status:
+    types: [success, failure]
+  workflow_run:
+    workflows: ["deploy"]
+    types: [completed]
+
+jobs:
+  slack_notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Send notification
+        env:
+          SLACK_BOT_TOKEN: ${{ xoxb-4264318617222-4483090506231-edxdkdjPy9fLKbhH1UAzQxNd }}
+        run: |
+          node send_notification.js ${{ github.event_name }} ${{ github.repository }} ${{ github.ref }} ${{ github.sha }} ${{ github.actor }}
