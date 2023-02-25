@@ -15,5 +15,6 @@ jobs:
           channel: <aiops-kubernetes>
           message: 'Deployment status: ${{ github.event.deployment_status.state }}'
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.xoxb-4264318617222-4483090506231-edxdkdjPy9fLKbhH1UAzQxNd
+          SLACK_BOT_TOKEN: ${{ secrets.HUBOT_SLACK_TOKEN=xoxb-4264318617222-4483090506231-edxdkdjPy9fLKbhH1UAzQxNd
+
  }}
